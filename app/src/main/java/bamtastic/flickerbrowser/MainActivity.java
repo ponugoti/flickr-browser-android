@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 //                      .setAction("Action", null).show();
 //            }
 //        });
+
+        GetRawData rawData = new GetRawData("https://api.flickr.com/services/feeds/photos_public.gne?tags=new+zealand&format=json&nojsoncallback=1");
+        rawData.execute();
     }
 
     @Override

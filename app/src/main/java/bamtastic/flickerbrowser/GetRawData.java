@@ -38,6 +38,12 @@ public class GetRawData {
         return mDownloadStatus;
     }
 
+    public void execute() {
+        this.mDownloadStatus = DownloadStatus.PROCESSING;
+        DownloadRawData downloadRawData = new DownloadRawData();
+        downloadRawData.execute(mRawUrl);
+    }
+
     public class DownloadRawData extends AsyncTask<String, Void, String> {
 
         @Override
@@ -87,7 +93,7 @@ public class GetRawData {
         @Override
         protected void onPostExecute(String webData) {
             mData = webData;
-            Log.v(TAG, "Data returned: " + mData);
+//            Log.v(TAG, "Data returned: " + mData);
             if (mData == null) {
                 if (mRawUrl == null) {
                     mDownloadStatus = DownloadStatus.NOT_INITIALISED;
