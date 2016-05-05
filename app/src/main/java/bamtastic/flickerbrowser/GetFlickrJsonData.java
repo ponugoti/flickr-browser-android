@@ -13,7 +13,6 @@ import java.util.List;
 public class GetFlickrJsonData
       extends GetRawData
 {
-
     private static final String TAG = GetFlickrJsonData.class.getSimpleName();
     private List<Photo> mPhotos;
     private Uri         mDestinationUri;

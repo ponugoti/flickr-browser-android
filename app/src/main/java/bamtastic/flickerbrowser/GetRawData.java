@@ -10,13 +10,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-enum DownloadStatus { IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK }
+enum DownloadStatus {IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK}
 
 public class GetRawData {
 
     private static final String TAG = GetRawData.class.getSimpleName();
-    private String mRawUrl;
-    private String mData;
+    private String         mRawUrl;
+    private String         mData;
     private DownloadStatus mDownloadStatus;
 
     public GetRawData(String mRawUrl) {
@@ -44,17 +44,21 @@ public class GetRawData {
         downloadRawData.execute(mRawUrl);
     }
 
-    public class DownloadRawData extends AsyncTask<String, Void, String> {
+    public class DownloadRawData
+          extends AsyncTask<String, Void, String>
+    {
 
         @Override
         protected String doInBackground(String... params) {
-            if (params == null) { return null; }
+            if (params == null) {
+                return null;
+            }
 
             HttpURLConnection urlConnection = null;
-            BufferedReader reader = null;
-            InputStream inputStream;
-            StringBuffer buffer;
-            String line;
+            BufferedReader    reader        = null;
+            InputStream       inputStream;
+            StringBuffer      buffer;
+            String            line;
 
             try {
                 URL url = new URL(params[0]);
@@ -63,7 +67,9 @@ public class GetRawData {
                 urlConnection.connect();
 
                 inputStream = urlConnection.getInputStream();
-                if (inputStream == null) { return null; }
+                if (inputStream == null) {
+                    return null;
+                }
 
                 buffer = new StringBuffer();
                 reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -93,14 +99,16 @@ public class GetRawData {
         @Override
         protected void onPostExecute(String webData) {
             mData = webData;
-//            Log.v(TAG, "Data returned: " + mData);
+            // Log.v(TAG, "Data returned: " + mData);
             if (mData == null) {
                 if (mRawUrl == null) {
                     mDownloadStatus = DownloadStatus.NOT_INITIALISED;
-                } else {
+                }
+                else {
                     mDownloadStatus = DownloadStatus.FAILED_OR_EMPTY;
                 }
-            } else {
+            }
+            else {
                 mDownloadStatus = DownloadStatus.OK;
             }
         }
