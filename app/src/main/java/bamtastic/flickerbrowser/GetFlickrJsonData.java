@@ -23,6 +23,14 @@ public class GetFlickrJsonData
         mPhotos = new ArrayList<>();
     }
 
+    public void execute() {
+        super.setmRawUrl(mDestinationUri.toString());
+        DownloadJsonData downloadJsonData = new DownloadJsonData();
+        Log.v(TAG, "execute: Built URI: " + mDestinationUri.toString());
+        downloadJsonData.execute(mDestinationUri.toString());
+
+    }
+
     public boolean createAndUpdateUri(String searchCriteria, boolean matchAll) {
         final String FLICKR_BASE_URI        = "https://api.flickr.com/services/feeds/photos_public.gne";
         final String TAGS_PARAM             = "tags";
@@ -72,6 +80,10 @@ public class GetFlickrJsonData
 
                 Photo photoObject = new Photo(title, author, authorId, link, tags, photoUrl);
                 mPhotos.add(photoObject);
+            }
+
+            for (Photo iPhoto : mPhotos) {
+                Log.v(TAG, iPhoto.toString());
             }
         } catch (JSONException e) {
             e.printStackTrace();

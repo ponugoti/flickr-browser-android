@@ -24,6 +24,10 @@ public class GetRawData {
         this.mDownloadStatus = DownloadStatus.IDLE;
     }
 
+    public void setmRawUrl(String mRawUrl) {
+        this.mRawUrl = mRawUrl;
+    }
+
     public void reset() {
         this.mDownloadStatus = DownloadStatus.IDLE;
         this.mRawUrl = null;

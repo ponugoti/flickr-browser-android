@@ -25,9 +25,10 @@ public class MainActivity
 //            }
 //        });
 
-        GetRawData rawData = new GetRawData(
-              "https://api.flickr.com/services/feeds/photos_public.gne?tags=new+zealand&format=json&nojsoncallback=1");
-        rawData.execute();
+//        GetRawData rawData = new GetRawData(
+//              "https://api.flickr.com/services/feeds/photos_public.gne?tags=new+zealand&format=json&nojsoncallback=1");
+        GetFlickrJsonData jsonData = new GetFlickrJsonData("new+zealand,dunedin", true);
+        jsonData.execute();
     }
 
     @Override
