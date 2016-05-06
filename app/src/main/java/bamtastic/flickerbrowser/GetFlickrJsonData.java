@@ -48,6 +48,10 @@ public class GetFlickrJsonData
         return mDestinationUri != null;
     }
 
+    public List<Photo> getMPhotos() {
+        return mPhotos;
+    }
+
     public void processResult() {
         if (getmDownloadStatus() != DownloadStatus.OK) {
             Log.e(TAG, "processResult: Error downloading raw file");
@@ -97,7 +101,8 @@ public class GetFlickrJsonData
 
         @Override
         protected String doInBackground(String... params) {
-            return super.doInBackground(params);
+            String[] param = { mDestinationUri.toString() };
+            return super.doInBackground(param);
         }
 
         @Override

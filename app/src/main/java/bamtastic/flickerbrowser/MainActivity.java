@@ -2,13 +2,22 @@ package bamtastic.flickerbrowser;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity
       extends AppCompatActivity
 {
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private RecyclerView mRecyclerView;
+    private List<Photo> mPhotosList = new ArrayList<>();
+    private FlickrRecyclerViewAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,5 +60,31 @@ public class MainActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class ProcessPhotos
+          extends GetFlickrJsonData
+    {
+        public ProcessPhotos(String searchCriteria, boolean matchAll) {
+            super(searchCriteria, matchAll);
+        }
+
+        @Override
+        public void execute() {
+            super.execute();
+            ProcessData processData = new ProcessData();
+            processData.execute();
+        }
+
+        public class ProcessData
+              extends DownloadJsonData
+        {
+            @Override
+            protected void onPostExecute(String webData) {
+                super.onPostExecute(webData);
+                mAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, getMPhotos());
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        }
     }
 }
