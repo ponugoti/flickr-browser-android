@@ -29,7 +29,7 @@ public class MainActivity
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ProcessPhotos processPhotos = new ProcessPhotos("new+zealand,university+of+otago", true);
+        ProcessPhotos processPhotos = new ProcessPhotos("new+zealand", true);
         processPhotos.execute();
     }
 
