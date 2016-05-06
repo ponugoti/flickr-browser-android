@@ -9,7 +9,6 @@
         android:id="@+id/thumbnail"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/placeholder"/>
     
@@ -18,8 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:alignParentTop="true"
-        android:alignParentLeft="true"
         android:id="@+id/title"
         android:maxLength="3"/>
 </LinearLayout>

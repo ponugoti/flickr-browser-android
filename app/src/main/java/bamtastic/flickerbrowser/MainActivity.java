@@ -2,6 +2,7 @@ package bamtastic.flickerbrowser;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -25,19 +26,11 @@ public class MainActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                      .setAction("Action", null).show();
-//            }
-//        });
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        GetRawData rawData = new GetRawData(
-//              "https://api.flickr.com/services/feeds/photos_public.gne?tags=new+zealand&format=json&nojsoncallback=1");
-        GetFlickrJsonData jsonData = new GetFlickrJsonData("new+zealand,dunedin", true);
-        jsonData.execute();
+        ProcessPhotos processPhotos = new ProcessPhotos("new+zealand,university+of+otago", true);
+        processPhotos.execute();
     }
 
     @Override
