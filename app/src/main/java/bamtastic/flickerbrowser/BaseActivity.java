@@ -16,4 +16,13 @@ public class BaseActivity extends AppCompatActivity {
         }
         return mToolbar;
     }
+
+    protected Toolbar activateToolbarWithHomeEnabled() {
+        activateToolbar();
+        if (mToolbar != null) {
+            assert getSupportActionBar() != null;
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        return mToolbar;
+    }
 }
