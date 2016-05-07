@@ -17,17 +17,17 @@
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
-    <style name="ActionBarThemeOverlay" parent="">
+    <style name="ActionBarThemeOverlay" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
-        <item name="colorControlHighlight">@color/colorBackground</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="android:actionMenuTextColor">@color/colorPrimaryText</item>
-        <item name="android:textColorSecondary">@color/colorSecondaryText</item>
-        <item name="android:background">@color/colorBackground</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryText</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="ActionBar.TitleText"
            parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:textSize">18sp</item>
     </style>
 
