@@ -1,21 +1,25 @@
 package bamtastic.flickerbrowser;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.jake.quiltview.QuiltView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity
       extends BaseActivity
 {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private RecyclerView mRecyclerView;
-    private List<Photo> mPhotosList = new ArrayList<>();
+    private RecyclerView              mRecyclerView;
     private FlickrRecyclerViewAdapter mAdapter;
+
+    public QuiltView quiltView;
+    public ArrayList<ImageView> imageViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +27,12 @@ public class MainActivity
         setContentView(R.layout.activity_main);
         activateToolbar();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        quiltView = (com.jake.quiltview.QuiltView) findViewById(R.id.quilt);
+        if (quiltView != null) {
+            quiltView.setChildPadding(5);
+        }
+//        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ProcessPhotos processPhotos = new ProcessPhotos("new+zealand", true);
         processPhotos.execute();
@@ -71,9 +79,18 @@ public class MainActivity
         {
             @Override
             protected void onPostExecute(String webData) {
-                super.onPostExecute(webData);
-                mAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, getMPhotos());
-                mRecyclerView.setAdapter(mAdapter);
+//                super.onPostExecute(webData);
+//                mAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, getMPhotos());
+//                mRecyclerView.setAdapter(mAdapter);
+
+                for (Photo photo : getMPhotos()) {
+                    ImageView newImageView = new ImageView(MainActivity.this);
+                    Picasso.with(MainActivity.this)
+                          .load(photo.getmImage())
+                          .into(newImageView);
+                    imageViews.add(newImageView);
+                }
+                quiltView.addPatchImages(imageViews);
             }
         }
     }
