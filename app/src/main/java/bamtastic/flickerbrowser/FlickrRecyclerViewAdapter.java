@@ -41,4 +41,9 @@ public class FlickrRecyclerViewAdapter
     public int getItemCount() {
         return (mPhotosList != null) ? mPhotosList.size() : 0;
     }
+
+    public void loadnewData(List<Photo> newPhotos) {
+        mPhotosList = newPhotos;
+        notifyDataSetChanged();
+    }
 }

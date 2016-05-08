@@ -17,30 +17,29 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView mRecyclerView;
     private List<Photo> mPhotosList = new ArrayList<>();
-    private FlickrRecyclerViewAdapter mAdapter;
+    private FlickrRecyclerViewAdapter mRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         activateToolbar();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        ProcessPhotos processPhotos = new ProcessPhotos("", true);
-        processPhotos.execute();
+        mRecyclerViewAdapter = new FlickrRecyclerViewAdapter(MainActivity.this,
+                                                             new ArrayList<Photo>());
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mAdapter != null) {
-            String query = getSavedPreferenceData(FLICKR_QUERY);
-            if (query.length() > 0) {
-                ProcessPhotos processPhotos = new ProcessPhotos(query, true);
-                processPhotos.execute();
-            }
+        String query = getSavedPreferenceData(FLICKR_QUERY);
+        if (query.length() > 0) {
+            ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+            processPhotos.execute();
         }
     }
 
@@ -96,8 +95,7 @@ public class MainActivity extends BaseActivity {
             @Override
             protected void onPostExecute(String webData) {
                 super.onPostExecute(webData);
-                mAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, getMPhotos());
-                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerViewAdapter.loadnewData(getPhotos());
             }
         }
     }

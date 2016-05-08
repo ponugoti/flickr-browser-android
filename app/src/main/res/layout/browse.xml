@@ -3,13 +3,18 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
-              android:padding="8dp">
+              android:paddingStart="10dp"
+              android:paddingEnd="10dp"
+              android:paddingLeft="10dp"
+              android:layout_marginTop="50dp"
+              android:paddingRight="10dp">
 
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
         android:src="@drawable/placeholder"/>
     
     <TextView
@@ -18,5 +23,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:id="@+id/title"
+        android:maxLines="5"
+        android:textColor="@color/md_grey_600"
         android:layout_gravity="center_vertical"/>
 </LinearLayout>

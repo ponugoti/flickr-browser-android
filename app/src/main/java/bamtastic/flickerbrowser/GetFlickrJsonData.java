@@ -48,7 +48,7 @@ public class GetFlickrJsonData
         return mDestinationUri != null;
     }
 
-    public List<Photo> getMPhotos() {
+    public List<Photo> getPhotos() {
         return mPhotos;
     }
 
