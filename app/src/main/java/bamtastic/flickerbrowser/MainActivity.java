@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         String query = getSavedPreferenceData(FLICKR_QUERY);
-        if (query.length() > 0) {
+        if (query != null) {
             ProcessPhotos processPhotos = new ProcessPhotos(query, true);
             processPhotos.execute();
         }
@@ -98,7 +98,6 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void execute() {
-            super.execute();
             ProcessData processData = new ProcessData();
             processData.execute();
         }
