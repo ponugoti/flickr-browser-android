@@ -14,7 +14,7 @@ public class FlickrRecyclerViewAdapter
       extends RecyclerView.Adapter<FlickrImageViewHolder>
 {
     private List<Photo> mPhotosList;
-    private Context     mContext;
+    private Context mContext;
 
     public FlickrRecyclerViewAdapter(Context context, List<Photo> photosList) {
         mContext = context;
@@ -42,7 +42,7 @@ public class FlickrRecyclerViewAdapter
         return (mPhotosList != null) ? mPhotosList.size() : 0;
     }
 
-    public void loadnewData(List<Photo> newPhotos) {
+    public void loadNewData(List<Photo> newPhotos) {
         mPhotosList = newPhotos;
         notifyDataSetChanged();
     }

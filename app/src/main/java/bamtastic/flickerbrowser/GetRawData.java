@@ -15,8 +15,8 @@ enum DownloadStatus {IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK}
 public class GetRawData {
 
     private static final String TAG = GetRawData.class.getSimpleName();
-    private String         mRawUrl;
-    private String         mData;
+    private String mRawUrl;
+    private String mData;
     private DownloadStatus mDownloadStatus;
 
     public GetRawData(String mRawUrl) {
@@ -59,10 +59,10 @@ public class GetRawData {
             }
 
             HttpURLConnection urlConnection = null;
-            BufferedReader    reader        = null;
-            InputStream       inputStream;
-            StringBuffer      buffer;
-            String            line;
+            BufferedReader reader = null;
+            InputStream inputStream;
+            StringBuffer buffer;
+            String line;
 
             try {
                 URL url = new URL(params[0]);
@@ -107,12 +107,10 @@ public class GetRawData {
             if (mData == null) {
                 if (mRawUrl == null) {
                     mDownloadStatus = DownloadStatus.NOT_INITIALISED;
-                }
-                else {
+                } else {
                     mDownloadStatus = DownloadStatus.FAILED_OR_EMPTY;
                 }
-            }
-            else {
+            } else {
                 mDownloadStatus = DownloadStatus.OK;
             }
         }

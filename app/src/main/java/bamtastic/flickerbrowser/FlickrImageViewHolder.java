@@ -9,7 +9,7 @@ public class FlickrImageViewHolder
       extends RecyclerView.ViewHolder
 {
     protected ImageView thumbnail;
-    protected TextView  title;
+    protected TextView title;
 
     public FlickrImageViewHolder(View view) {
         super(view);

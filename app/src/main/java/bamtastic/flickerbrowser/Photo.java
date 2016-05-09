@@ -9,7 +9,8 @@ public class Photo {
     private String mTags;
     private String mImage;
 
-    public Photo(String mTitle, String mAuthor, String mAuthorId, String mLink, String mTags, String mImage) {
+    public Photo(String mTitle, String mAuthor, String mAuthorId, String mLink, String mTags,
+                 String mImage) {
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
         this.mAuthorId = mAuthorId;
@@ -45,12 +46,12 @@ public class Photo {
     @Override
     public String toString() {
         return "Photo{" +
-              "mTitle='" + mTitle + '\'' +
-              ", mAuthor='" + mAuthor + '\'' +
-              ", mAuthorId='" + mAuthorId + '\'' +
-              ", mLink='" + mLink + '\'' +
-              ", mTags='" + mTags + '\'' +
-              ", mImage='" + mImage + '\'' +
-              '}';
+                     "mTitle='" + mTitle + '\'' +
+                     ", mAuthor='" + mAuthor + '\'' +
+                     ", mAuthorId='" + mAuthorId + '\'' +
+                     ", mLink='" + mLink + '\'' +
+                     ", mTags='" + mTags + '\'' +
+                     ", mImage='" + mImage + '\'' +
+                     '}';
     }
 }

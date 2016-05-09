@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
             @Override
             protected void onPostExecute(String webData) {
                 super.onPostExecute(webData);
-                mRecyclerViewAdapter.loadnewData(getPhotos());
+                mRecyclerViewAdapter.loadNewData(getPhotos());
             }
         }
     }
